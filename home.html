@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion & Drowsiness Detection</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background Image with Overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('static/BACK.jpg') no-repeat center center/cover;
+      filter: brightness(60%) blur(2px);
+      z-index: -1;
+    }
+
+    /* Heading with Neon Effect */
+    .header {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      font-size: 3em;
+      color: #ffffff;
+      text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d, 0 0 30px #ff4d4d;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d;
+      }
+
+      to {
+        text-shadow: 0 0 20px #ff4d4d, 0 0 40px #ff4d4d;
+      }
+    }
+
+    /* Glassmorphic Container */
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      margin-top: 150px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      font-size: 1.5em; /* Reduced from 2em */
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+
+    .btn {
+      padding: 20px 40px;
+      font-size: 1.5em;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .emotion-btn {
+      background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    }
+
+    .emotion-btn:hover {
+      background: linear-gradient(135deg, #4b0082, #32cd32);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .drowsiness-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ffcc70);
+    }
+
+    .drowsiness-btn:hover {
+      background: linear-gradient(135deg, #b30000, #ffaa00);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Footer */
+    footer {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.2em;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .header {
+        font-size: 2.2em;
+      }
+
+      .info {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Heading -->
+  <div class="header">
+    🚗 Emotion & Drowsiness Detection System
+  </div>
+
+  <!-- Glassmorphic Container -->
+  <div class="container">
+    <!-- Time & Date -->
+    <div class="info">
+      <div id="time">🕒 Time: --:--:--</div>
+      <div id="date">📅 Date: --/--/----</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button class="btn emotion-btn" onclick="window.location.href='/emotion'">🎶 Emotion-Based Playlist</button>
+      <button class="btn drowsiness-btn" onclick="window.location.href='/drowsiness'">😴 Drowsiness Detection</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>✨ Drive Safe & Stay Entertained! 🚗🎶</footer>
+
+  <!-- JavaScript for Time & Date -->
+  <script>
+    // Update Time and Date
+    function updateDateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      const date = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+
+      document.getElementById('time').innerText = `🕒 Time: ${time}`;
+      document.getElementById('date').innerText = `📅 Date: ${date}`;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+  </script>
+</body>
+
+</html>
